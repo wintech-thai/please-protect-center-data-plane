@@ -124,7 +124,7 @@ opencti:
     ELASTICSEARCH__URL: https://opensearch-cluster-master:9200
     ELASTICSEARCH__SSL__REJECT_UNAUTHORIZED: 'false'
     ELASTICSEARCH__USERNAME: 'admin'
-    ELASTICSEARCH__PASSWORD: 'PJskIEk!hsokKE123'
+    ELASTICSEARCH__PASSWORD: 'PJskIEk!hsokKE123' # This ins used internally not exposed to OpenCTI, so it's not a secret
 
     RABBITMQ__HOSTNAME: "opencti-main-rabbitmq"
     RABBITMQ__USERNAME: opencti
@@ -133,8 +133,8 @@ opencti:
 
     MINIO__ENDPOINT: opencti-main-minio
     MINIO__PORT: '9000'
-    MINIO__ACCESS_KEY: minioadmin
-    MINIO__SECRET_KEY: supersecretpassword
+    MINIO__ACCESS_KEY: minioadmin 
+    MINIO__SECRET_KEY: supersecretpassword # This ins used internally not exposed to OpenCTI, so it's not a secret
     MINIO__BUCKET_NAME: opencti
 
   readinessProbe:
@@ -166,7 +166,7 @@ opencti:
     enabled: true
     auth:
       username: opencti
-      password: opencti
+      password: opencti # This ins used internally not exposed to OpenCTI, so it's not a secret
     persistence:
       enabled: false
 
@@ -178,7 +178,7 @@ opencti:
 
     extraEnvs:
       - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
-        value: "PJskIEk!hsokKE123"
+        value: "PJskIEk!hsokKE123" # This ins used internally not exposed to OpenCTI, so it's not a secret
 
     persistence:
       enabled: true
