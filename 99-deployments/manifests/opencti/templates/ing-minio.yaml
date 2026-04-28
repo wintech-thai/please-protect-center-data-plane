@@ -9,7 +9,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /tools/grafana-loki
+          - path: /tools/minio
             pathType: Prefix
             backend:
               service:
