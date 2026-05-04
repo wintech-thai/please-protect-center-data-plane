@@ -16,7 +16,7 @@ spec:
       source:
         repoURL: https://github.com/wintech-thai/please-protect-center-data-plane.git
         targetRevision: "{{name}}" #Based on environment
-        path: 'manifests/logstash-etl'
+        path: '99-deployments/manifests/logstash-etl'
       destination:
         name: in-cluster
         namespace: logstash-etl
