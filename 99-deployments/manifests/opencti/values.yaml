@@ -1,3 +1,5 @@
+domainOpenCti: opencti.pp-center.local
+
 ### OpenCTI ###
 opencti:
   enabled: true

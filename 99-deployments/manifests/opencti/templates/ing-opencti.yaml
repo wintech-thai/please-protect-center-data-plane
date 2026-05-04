@@ -6,8 +6,12 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/backend-protocol: HTTP
 spec:
+  tls:
+    - hosts:
+      - {{ .Values.domainOpenCti }}
   rules:
-    - http:
+    - host: {{ .Values.domainOpenCti }}
+      http:
         paths:
           - path: /
             pathType: Prefix
