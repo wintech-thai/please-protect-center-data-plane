@@ -39,6 +39,11 @@ spec:
 {{ toYaml .Values.resources.nginx | indent 12 }}
 
         - name: maxmind-updater
+          args:
+            - /scripts/geoip-db-downloader.rb
+          command:
+            - ruby
+
           image: {{ .Values.updater.image }}
           env:
             - name: TEMP_DIR
