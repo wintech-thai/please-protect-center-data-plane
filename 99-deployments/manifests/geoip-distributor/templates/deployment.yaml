@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.nameOverride }}
+spec:
+  replicas: {{ .Values.nginx.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.nameOverride }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.nameOverride }}
+    spec:
+      volumes:
+        - name: geoip-storage
+          persistentVolumeClaim:
+            claimName: '{{ .Values.nameOverride }}-pvc'
+
+      containers:
+        - name: nginx
+          image: {{ .Values.nginx.image }}
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: geoip-storage
+              mountPath: /usr/share/nginx/html
+          #readinessProbe:
+          #  httpGet:
+          #    path: /version.json
+          #    port: 80
+          #  initialDelaySeconds: 5
+          #livenessProbe:
+          #  httpGet:
+          #    path: /version.json
+          #    port: 80
+          #  initialDelaySeconds: 10
+          resources:
+{{ toYaml .Values.resources.nginx | indent 12 }}
+
+        - name: maxmind-updater
+          image: {{ .Values.updater.image }}
+          env:
+            - name: TEMP_DIR
+              value: {{ .Values.updater.tmpDir | quote }}
+            - name: DOWNLOAD_DIR
+              value: {{ .Values.updater.downloadDir | quote }}
+            - name: EDITION_ID
+              value: {{ .Values.updater.editionId | quote }}
+            - name: LICENSE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.updater.licenseKeySecret.name }}
+                  key: {{ .Values.updater.licenseKeySecret.key }}
+          volumeMounts:
+            - name: geoip-storage
+              mountPath: /data/mmdb
+          resources:
+{{ toYaml .Values.resources.updater | indent 12 }}

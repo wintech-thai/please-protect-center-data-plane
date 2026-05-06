@@ -1,0 +1,38 @@
+nameOverride: geoip-distributor
+
+nginx:
+  image: nginx:stable-alpine
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    port: 80
+
+updater:
+  image: asia-southeast1-docker.pkg.dev/its-artifact-commons/please-protect/please-protect-jobs:v0.0.22
+  editionId: GeoLite2-City
+  tmpDir: /tmp/maxmind
+  downloadDir: /data/mmdb
+  checkInterval: 3600
+  licenseKeySecret:
+    name: maxmind-secret
+    key: MAXMIND_LICENSE_KEY
+
+storage:
+  enabled: true
+  size: 5Gi
+
+resources:
+  nginx:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+  updater:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 256Mi

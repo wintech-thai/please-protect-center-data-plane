@@ -1,0 +1,7 @@
+apiVersion: v2
+name: helm-geoip-distributor
+version: 1.0.0
+appVersion: 1.23.0
+description: A Helm chart for deploying GeoIP Distributor
+
+dependencies: []
