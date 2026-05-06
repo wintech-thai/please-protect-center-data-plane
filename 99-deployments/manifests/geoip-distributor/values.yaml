@@ -1,3 +1,4 @@
+domainFileDistributor: downloads.pp-center.local
 nameOverride: geoip-distributor
 
 nginx:
