@@ -46,27 +46,27 @@ opencti:
         name: opencti-secret
         key: app__admin__token
 
-  #- name: alienvault
-  #  enabled: true
-  #  replicas: 1
-  #  image:
-  #    repository: opencti/connector-alienvault
-  #    tag: 6.9.9
-  #  env:
-  #    CONNECTOR_ID: "alientvault" 
-  #    CONNECTOR_NAME: "AlienVault"  # Optional (default: AlienVault)
-  #    CONNECTOR_SCOPE: "alienvault"  # Optional (default: alienvault)
-  #    CONNECTOR_LOG_LEVEL: "info"  # Optional (default: error)
-  #    CONNECTOR_DURATION_PERIOD: "PT30M"  # Optional (default: PT30M) - ISO8601 Format starting with "P" for Period ex: "PT30M" = Period time of 30 minutes
-  #    ALIENVAULT_BASE_URL: "https://otx.alienvault.com"  # Optional (default: https://otx.alienvault.com)
-  #    ALIENVAULT_X_OPENCTI_SCORE_CRYPTOCURRENCY_WALLET: "80"
-  #  envFromSecrets:
-  #    OPENCTI_TOKEN:
-  #      name: opencti-secret
-  #      key: app__admin__token
-  #    ALIENVAULT_API_KEY:
-  #      name: opencti-secret
-  #      key: app__alienvault__api_key
+  - name: alienvault
+    enabled: true
+    replicas: 1
+    image:
+      repository: opencti/connector-alienvault
+      tag: 6.9.9
+    env:
+      CONNECTOR_ID: "alientvault" 
+      CONNECTOR_NAME: "AlienVault"  # Optional (default: AlienVault)
+      CONNECTOR_SCOPE: "alienvault"  # Optional (default: alienvault)
+      CONNECTOR_LOG_LEVEL: "info"  # Optional (default: error)
+      CONNECTOR_DURATION_PERIOD: "PT30M"  # Optional (default: PT30M) - ISO8601 Format starting with "P" for Period ex: "PT30M" = Period time of 30 minutes
+      ALIENVAULT_BASE_URL: "https://otx.alienvault.com"  # Optional (default: https://otx.alienvault.com)
+      ALIENVAULT_X_OPENCTI_SCORE_CRYPTOCURRENCY_WALLET: "80"
+    envFromSecrets:
+      OPENCTI_TOKEN:
+        name: opencti-secret
+        key: app__admin__token
+      ALIENVAULT_API_KEY:
+        name: opencti-secret
+        key: app__alienvault__api_key
 
   - name: misp
     enabled: false #ไว้รอมี MISP_URL แล้วค่อยเปิดใช้งาน
