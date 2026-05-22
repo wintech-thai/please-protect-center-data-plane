@@ -1,0 +1,51 @@
+domain1: minio-console.pp-center.local
+domain2: minio-api.pp-center.local
+
+minio:
+  enabled: true
+  existingSecret: minio-secret
+  mode: standalone
+
+  persistence:
+    enabled: true
+    size: 30Gi
+    accessMode: ReadWriteOnce
+
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 2
+      memory: 2Gi
+
+  service:
+    type: ClusterIP
+    port: 9000
+
+  consoleService:
+    type: ClusterIP
+    port: 9001
+
+  securityContext:
+    enabled: true
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+
+  podSecurityContext:
+    fsGroup: 1000
+
+  buckets:
+    - name: uploads-dev
+      policy: none
+      purge: false
+
+    - name: uploads-prod
+      policy: none
+      purge: false
+
+  #environment:
+  #  MINIO_BROWSER_REDIRECT_URL: https://minio-console.example.com
+  #  MINIO_SERVER_URL: https://minio.example.com
