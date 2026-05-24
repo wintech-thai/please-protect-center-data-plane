@@ -1,5 +1,5 @@
 domain1: storage-console.please-payment.local
-domain2: storage-api.please-payment.local
+domain2: storage-api.please-payment.com #ข้อจำกัดของ API เลยต้องใช้ domain ที่ตรงกับที่ DNS เลยแทนที่จะเป้น storage-api.please-payment.local
 
 minio:
   enabled: true
