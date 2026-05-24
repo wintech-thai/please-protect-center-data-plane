@@ -1,5 +1,5 @@
-domain1: minio-console.pp-center.local
-domain2: minio-api.pp-center.local
+domain1: storage-console.please-payment.local
+domain2: storage-api.please-payment.local
 
 minio:
   enabled: true
