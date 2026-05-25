@@ -46,6 +46,6 @@ minio:
       policy: none
       purge: false
 
-  #environment:
-  #  MINIO_BROWSER_REDIRECT_URL: https://minio-console.example.com
-  #  MINIO_SERVER_URL: https://minio.example.com
+  environment:
+    MINIO_SERVER_URL: https://storage-api.please-payment.com
+    MINIO_BROWSER_REDIRECT_URL: https://storage-console.please-payment.com
