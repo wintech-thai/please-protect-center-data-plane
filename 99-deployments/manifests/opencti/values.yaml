@@ -68,6 +68,26 @@ opencti:
         name: opencti-secret
         key: app__alienvault__api_key
 
+  - name: virustotal
+    enabled: true
+    replicas: 1
+    image:
+      repository: opencti/connector-virustotal
+      tag: 6.9.9
+    env:
+      CONNECTOR_ID: "virustotal"
+      CONNECTOR_NAME: "VirusTotal"  # Optional (default: VirusTotal)
+      CONNECTOR_SCOPE: "StixFile,Artifact,IPv4-Addr,Domain-Name,Url"
+      CONNECTOR_LOG_LEVEL: "info"  # Optional (default: error)
+      CONNECTOR_DURATION_PERIOD: "PT30M"  # Optional (default: PT30M) - ISO8601 Format starting with "P" for Period ex: "PT30M" = Period time of 30 minutes
+    envFromSecrets:
+      OPENCTI_TOKEN:
+        name: opencti-secret
+        key: app__admin__token
+      VIRUSTOTAL_TOKEN:
+        name: opencti-secret
+        key: app__virustotal__token
+
   - name: misp
     enabled: false #ไว้รอมี MISP_URL แล้วค่อยเปิดใช้งาน
     replicas: 1
