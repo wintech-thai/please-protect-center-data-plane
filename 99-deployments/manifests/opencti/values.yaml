@@ -79,6 +79,7 @@ opencti:
       CONNECTOR_NAME: "VirusTotal"  # Optional (default: VirusTotal)
       CONNECTOR_SCOPE: "StixFile,Artifact,IPv4-Addr,Domain-Name,Url"
       CONNECTOR_LOG_LEVEL: "info"  # Optional (default: error)
+      CONNECTOR_AUTO: "true"
       CONNECTOR_DURATION_PERIOD: "PT30M"  # Optional (default: PT30M) - ISO8601 Format starting with "P" for Period ex: "PT30M" = Period time of 30 minutes
     envFromSecrets:
       OPENCTI_TOKEN:
